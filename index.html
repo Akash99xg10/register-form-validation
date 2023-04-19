@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Signup</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initail-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+	<section class="box">
+		<div class="form">
+			<form action="#" class="form" id="myForm">
+				<h2>Signup</h2>
+				<input type="email" name="email" value="" placeholder="Enter your email" id="email">
+				<span class="error" id="error1"><ion-icon name="alert-circle-outline"></ion-icon> <h5>Email is not correct!</h5></span>
+				<div class="combo">
+					<input type="password" name="password1" id="pass1" placeholder="Create password" minlength="6" >
+					<ion-icon name="eye-off-outline" class="eye" id="eye1" onclick="show()"></ion-icon>
+					<p id="demo"></p>
+				</div>
+				<span class="error" id="error4"><ion-icon name="alert-circle-outline"></ion-icon> <h5> Please Create a password.</h5></span>
+				
+				<div class="combo">
+					<input type="password" name="password2" id="pass2" placeholder="Confirm password">
+					<ion-icon name="eye-off-outline" class="eye" id="eye2" onclick="show2()"></ion-icon>
+				</div>
+				<span class="error" id="error2"><ion-icon name="alert-circle-outline"></ion-icon> <h5> Password didn't match! Please try again.</h5></span>
+				<span class="error yes" id="error3"><ion-icon name="alert-circle-outline"></ion-icon> <h5> Password matched.</h5></span>
+				
+				<input type="submit" class="btn" value="Signup Now"/>
+			</form>
+		</div>
+	</section>
+
+	<script type="text/javascript">
+		
+		function show(){
+
+			var x = document.getElementById("pass1");
+			var y = x.getAttribute("type");
+
+			if( y == "password"){
+				x.setAttribute("type", "text");
+				document.getElementById("eye1").setAttribute("name", "eye-outline");
+			}
+			else{
+				x.setAttribute("type", "password");
+				document.getElementById("eye1").setAttribute("name", "eye-off-outline");
+			}
+			
+		}
+
+
+		function show2(){
+
+			var x = document.getElementById("pass2");
+			var y = x.getAttribute("type");
+
+			if( y == "password"){
+				x.setAttribute("type", "text");
+				document.getElementById("eye2").setAttribute("name", "eye-outline");
+			}
+			else{
+				x.setAttribute("type", "password");
+				document.getElementById("eye2").setAttribute("name", "eye-off-outline");
+			}
+			
+		}
+
+		function checkEmail(){
+			var email = document.getElementById("email").value;
+			var x = document.getElementById("error1");
+			const pattern = /[a-zA-Z0-9\.\-_]+@[a-zA-Z]+\.[a-zA-Z]{2,5}$/;
+			if(!email.match(pattern)){
+				x.style.display = "flex";
+			}
+			else{
+				x.style.display = "none";
+			}
+		}
+
+		function checkPass(){
+			var x = document.getElementById("pass1").value;
+			var y = document.getElementById("pass2").value;
+			var z = document.getElementById("error3");
+			var b = document.getElementById("error2");
+			var c = document.getElementById("error4");
+
+			if( x != "" && x == y ){
+				z.style.display = "flex";
+				b.style.display = "none";
+				c.style.display = "none";
+			}
+			else if( x == ""){
+				c.style.display = "flex";
+				z.style.display = "none";
+				b.style.display = "none";
+			}
+			else{
+				z.style.display = "none";
+				b.style.display = "flex";
+				c.style.display = "none";
+			}
+		}
+
+		
+			const form = document.querySelector("form");
+			form.addEventListener("submit", (e) => {
+	 			e.preventDefault();
+	 			checkPass();
+	 			checkEmail();
+			});
+		
+
+	</script>
+
+
+	<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+	<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
