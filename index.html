@@ -3,13 +3,13 @@
 <head>
 	<title>Signup</title>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initail-scale=1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
 	<section class="box">
 		<div class="form">
-			<form action="#" class="form" id="myForm">
+			<form action="demo.html" class="form" id="myForm">
 				<h2>Signup</h2>
 				<input type="email" name="email" value="" placeholder="Enter your email" id="email">
 				<span class="error" id="error1"><ion-icon name="alert-circle-outline"></ion-icon> <h5>Email is not correct!</h5></span>
@@ -68,15 +68,21 @@
 			
 		}
 
+		var matchmail = 0;
+		var matchpass = 0;
+
 		function checkEmail(){
 			var email = document.getElementById("email").value;
 			var x = document.getElementById("error1");
 			const pattern = /[a-zA-Z0-9\.\-_]+@[a-zA-Z]+\.[a-zA-Z]{2,5}$/;
 			if(!email.match(pattern)){
 				x.style.display = "flex";
+				matchmail = 1;
 			}
 			else{
 				x.style.display = "none";
+				matchmail = 0;
+				
 			}
 		}
 
@@ -88,7 +94,7 @@
 				var z = document.getElementById("error3");
 				var b = document.getElementById("error2");
 
-			const passpattern = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
+			const passpattern = /^(?=.*[0-9])(?=.*[a-z])(?=.*[!@#$%^&*])/;
 
 			if(x.match(passpattern)){
 
@@ -97,27 +103,32 @@
 				b.style.display = "none";
 				c.style.display = "none";
 				d.style.display = "none";
+				matchpass = 0;
 			}
-			else if( x == ""){
+			else if( x == "" ){
 				c.style.display = "flex";
 				z.style.display = "none";
 				b.style.display = "none";
 				d.style.display = "flex";
+				matchpass = 1;
 			}
 			else{
 				z.style.display = "none";
 				b.style.display = "flex";
 				c.style.display = "none";
 				d.style.display = "none";
+				matchpass = 1;
 			}
 
 			}
 			else if( x == ""){
 				c.style.display = "flex";
+				matchpass = 1;
 			}
 			else{
 				d.style.display = "flex";
 				c.style.display = "none";
+				matchpass = 1;
 			}
 
 			
@@ -129,6 +140,19 @@
 	 			e.preventDefault();
 	 			checkPass();
 	 			checkEmail();
+
+	 			var m = document.getElementById("email");
+	 			var n = document.getElementById("pass1");
+	 			var o = document.getElementById("pass2");
+ 
+	 			m.addEventListener("keyup", checkEmail);
+	 			n.addEventListener("keyup", checkPass);
+	 			o.addEventListener("keyup", checkPass);
+
+	 			if( matchmail != 1 && matchpass != 1 ){
+	 				location.href = form.getAttribute("action");
+	 			}
+
 			});
 		
 

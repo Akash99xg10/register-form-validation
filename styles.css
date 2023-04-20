@@ -44,6 +44,7 @@ input{
 	height: 40px;
 	box-shadow: 0 0 4px rgba(0, 0, 0, 0.25);
 	padding-left: 15px;
+	border-radius: 3px;
 }
 
 input:focus{
@@ -64,8 +65,14 @@ input:focus{
 }
 
 .btn{
-	background: rgb(26,164,213);
+	background: rgba(26,164,213,0.9);
 	color: #fff;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+.btn:hover{
+	background: rgb(26,164,213);
 }
 
 .error{
@@ -77,6 +84,21 @@ input:focus{
 
 .yes{
 	color: #59EE37;
+}
+
+.meme-box{
+	width: 400px;
+	height: 400px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.meme-img{
+	width: 100%;
+	height: 100%;
+	background-position: contain;
 }
 
 @media only screen and (max-width: 500px){
